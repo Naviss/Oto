@@ -9,7 +9,8 @@
       "Thi":65,
       "Tlow":4,
       "Vlim":2,
-      "default": true
+      "Default": true,
+      "Tstartup": 25
     },
     {
       "D":30,
@@ -20,7 +21,8 @@
       "Thi":65,
       "Tlow":4,
       "Vlim":8.6,
-      "default": false
+      "Default": false,
+      "Tstartup": 25
     }
   ]
 }
