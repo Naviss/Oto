@@ -1,0 +1,26 @@
+{
+  "ConfigTemps":[
+    {
+      "D":0.1,
+      "I":0.3,
+      "Ilim":1.9,
+      "Name":"Small Tec",
+      "P":8,
+      "Thi":65,
+      "Tlow":4,
+      "Vlim":2,
+      "default": true
+    },
+    {
+      "D":30,
+      "I":2,
+      "Ilim":4,
+      "Name":"Big Tec",
+      "P":200,
+      "Thi":65,
+      "Tlow":4,
+      "Vlim":8.6,
+      "default": false
+    }
+  ]
+}
