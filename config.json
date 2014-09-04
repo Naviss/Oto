@@ -24,5 +24,8 @@
       "Default": false,
       "Tstartup": 25
     }
-  ]
+  ],
+  "DeviceStrings": {
+    "KE2510": "GPIB0::15::INSTR" 
+  }
 }
