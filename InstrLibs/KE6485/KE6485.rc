@@ -1,0 +1,1696 @@
+library: KE6485_32.DLL
+
+class: "KE6485"
+implements: ivi, ividmm, iviResourceMgr
+attribute: "Range Check"
+	"Inherent IVI Attributes:User Options:Range Check"
+	bool readwrite local 00100592
+"Specifies whether to validate property values and function parameters.  If enabled, the instrument driver validates the parameter values that you pass to driver functions.  Range checking parameters is very useful for debugging.  After you validate your program, you can set this property to FALSE to disable range checking and maximize performance.
+    The default value is TRUE.   Use the KE6485_InitWithOptions function to override this value.
+    
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Query Instrument Status"
+	"Inherent IVI Attributes:User Options:Query Instrument Status"
+	bool readwrite local 00100593
+"Specifies whether the instrument driver queries the instrument status after each operation.  Querying the instrument status is very useful for debugging.  After you validate your program, you can set this property to FALSE to disable status checking and maximize performance
+    The instrument driver can choose to ignore status checking for particular properties regardless of the setting of this property.
+    The default value is TRUE.   Use the KE6485_InitWithOptions function to override this value.
+    
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Cache"
+	"Inherent IVI Attributes:User Options:Cache"
+	bool readwrite local 00100594
+"Specifies whether to cache the value of properties.  When caching is enabled, the instrument driver keeps track of the current instrument settings and avoids sending redundant commands to the instrument.  Thus, you can significantly increase execution speed.
+    The instrument driver can choose always to cache or never to cache particular properties regardless of the setting of this property.
+    The default value is TRUE.   Use the KE6485_InitWithOptions function to override this value.
+    
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Simulate"
+	"Inherent IVI Attributes:User Options:Simulate"
+	bool readwrite local 00100595
+"Specifies whether or not to simulate instrument driver I/O operations.  If simulation is enabled, instrument driver functions perform range checking and call Ivi_GetAttribute and Ivi_SetAttribute functions, but they do not perform instrument I/O.  For output parameters that represent instrument data, the instrument driver functions return calculated values.
+    The default value is FALSE.   Use the KE6485_InitWithOptions function to override this value.
+    
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Record Value Coercions"
+	"Inherent IVI Attributes:User Options:Record Value Coercions"
+	bool readwrite local 00100596
+"Specifies whether the IVI engine keeps a list of the value coercions it makes for ViInt32 and ViReal64 properties.  You call KE6485_GetNextCoercionRecord to extract and delete the oldest coercion record from the list.
+    The default value is FALSE.   Use the KE6485_InitWithOptions function to override this value.
+    
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Interchange Check"
+	"Inherent IVI Attributes:User Options:Interchange Check"
+	bool readwrite local 001005A5
+"    
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Description"
+	"Inherent IVI Attributes:Driver Identification:Description"
+	string readonly local 00100792
+"A string that contains a brief description of the specific driver
+    "
+attribute: "Driver Prefix"
+	"Inherent IVI Attributes:Driver Identification:Driver Prefix"
+	string readonly local 001006BE
+"A string that contains the prefix for the instrument driver.  The name of each user-callable function in this driver starts with this prefix.
+    "
+attribute: "Specific Driver Locator"
+	"Inherent IVI Attributes:Driver Identification:Specific Driver Locator"
+	string readonly local 001006BF
+"    "
+attribute: "Driver Vendor"
+	"Inherent IVI Attributes:Driver Identification:Driver Vendor"
+	string readonly local 00100791
+"A string that contains the name of the vendor that supplies this driver.
+    "
+attribute: "Major Version"
+	"Inherent IVI Attributes:Driver Identification:Major Version"
+	iL readonly local 00100787
+"The major version number of this instrument driver.
+    "
+attribute: "Minor Version"
+	"Inherent IVI Attributes:Driver Identification:Minor Version"
+	iL readonly local 00100788
+"The minor version number of this instrument driver.
+    "
+attribute: "Revision"
+	"Inherent IVI Attributes:Driver Identification:Revision"
+	string readonly local 001007B7
+"A string that contains additional version information about this instrument driver.
+    "
+attribute: "Class Specification Major Version"
+	"Inherent IVI Attributes:Driver Identification:Class Specification Major Version"
+	iL readonly local 00100793
+"The major version number of the class specification with which this driver is compliant.
+    "
+attribute: "Class Specification Minor Version"
+	"Inherent IVI Attributes:Driver Identification:Class Specification Minor Version"
+	iL readonly local 00100794
+"The minor version number of the class specification with which this driver is compliant.
+    "
+attribute: "Supported Instrument Models"
+	"Inherent IVI Attributes:Driver Capabilities:Supported Instrument Models"
+	string readonly local 001006D7
+"Contains a model code of the instrument. For drivers that support more than one device, this property contains a comma-separated list of supported instrument models.
+    "
+attribute: "Supported Classes"
+	"Inherent IVI Attributes:Driver Capabilities:Supported Classes"
+	string readonly local 001006D3
+"A string that contains the specification type to which this driver is written.  If the driver complies to more than one IVI class specification, this property contains a comma-separated list of IVI class names.    "
+attribute: "Class Group Capabilities"
+	"Inherent IVI Attributes:Driver Capabilities:Class Group Capabilities"
+	string readonly local 00100721
+"A string that contains a comma-separated list of class-extension groups that this driver implements.
+    "
+attribute: "Number of Channels"
+	"Inherent IVI Attributes:Driver Capabilities:Number of Channels"
+	iL readonly local <no Id>
+"Indicates the number of channels that the specific instrument driver supports.  
+    For each property for which the IVI_VAL_MULTI_CHANNEL flag property is set, the IVI engine maintains a separate cache value for each channel.
+    "
+attribute: "Manufacturer"
+	"Inherent IVI Attributes:Instrument Identification:Manufacturer"
+	string readonly local 0010078F
+"A string that contains the name of the instrument manufacturer you are currently using.
+    "
+attribute: "Model"
+	"Inherent IVI Attributes:Instrument Identification:Model"
+	string readonly local 00100790
+"A string that contains the model number or name of the instrument that you are currently using.
+    "
+attribute: "Firmware Revision"
+	"Inherent IVI Attributes:Instrument Identification:Firmware Revision"
+	string readonly local 0010078E
+"A string that contains the firmware revision information for the instrument you are currently using.
+    "
+attribute: "Primary Error"
+	"Inherent IVI Attributes:Error Info:Primary Error"
+	iL readwrite local 001005F5
+"A code that describes the first error that occurred since the last call to KE6485_GetErrorInfo on the session.  The value follows the VXIplug&play completion code conventions.  A negative value describes an error condition.  A positive value describes a warning condition and indicates that no error occurred.  A zero indicates that no error or warning occurred. The error and warning values can be status codes defined by IVI, VISA, class drivers, or specific drivers.
+    "
+attribute: "Secondary Error"
+	"Inherent IVI Attributes:Error Info:Secondary Error"
+	iL readwrite local 001005F6
+"An optional code that provides additional information concerning the primary error condition.  The error and warning values can be status codes defined by IVI, VISA, class drivers, or specific drivers.  Zero indicates no additional information.
+    "
+attribute: "Error Elaboration"
+	"Inherent IVI Attributes:Error Info:Error Elaboration"
+	string readwrite local 001005F7
+"An optional string that contains additional information concerning the primary error condition.
+    "
+attribute: "Logical Name"
+	"Inherent IVI Attributes:Advanced Session Information:Logical Name"
+	string readonly local 001006C1
+"A string containing the logical name you specified when opening the current IVI session.
+     You may pass a logical name to the KE6485_init or KE6485_InitWithOptions functions.  The IVI Configuration utility must contain an entry for the logical name.  The logical name entry refers to a virtual instrument section in the IVI Configuration file.  The virtual instrument section specifies a physical device and initial user options.
+    "
+attribute: "Resource Descriptor"
+	"Inherent IVI Attributes:Advanced Session Information:Resource Descriptor"
+	string readonly local 001006C0
+"Indicates the resource descriptor the driver uses to identify the physical device.
+    If you initialize the driver with a logical name, this property contains the resource descriptor that corresponds to the entry in the IVI Configuration utility.  
+    If you initialize the instrument driver with the resource descriptor, this property contains that value.
+    "
+attribute: "Driver Setup"
+	"Inherent IVI Attributes:Advanced Session Information:Driver Setup"
+	string readonly local 00100597
+"A string that contains driver-specific initialization options.  You can specify driver options through the DriverSetup keyword in the optionsString parameter to the KE6485_InitWithOptions function.  If you initialize the driver with a logical name, you can specify driver options in the IVI Configuration utility.  
+    This is useful in cases where you must specify instrument driver options at initialization time.  An example of this is specifying a particular instrument model from among a family of instruments that the driver supports.
+    "
+attribute: "I/O Session Type"
+	"Inherent IVI Attributes:Advanced Session Information:I/O Session Type"
+	string readonly local 001006D4
+"Contains the type of the I/O session that this driver uses to communicate with the instrument.     "
+attribute: "Function"
+	"Basic Instrument Operation:Function"
+	iL readwrite local 001312D1
+"Specifies the measurement function.
+
+The value of this property determines the units for the Range and Resolution Absolute properties, and the measurement values that are returned by the Read, Read Multiple Point, Fetch, and Fetch Multiple Point functions.
+
+Valid values:
+
+Model 6485
+KE6485_VAL_DC_CURRENT
+
+Model 6487
+KE6485_VAL_DC_CURRENT
+
+Model 6514
+KE6485_VAL_DC_VOLTS
+KE6485_VAL_DC_CURRENT
+KE6485_VAL_2_WIRE_RES 
+KE6485_VAL_DC_CHARGE
+
+
+"
+attribute: "Range"
+	"Basic Instrument Operation:Range"
+	fD readwrite local 001312D2
+"Specifies the measurement range.  
+
+Positive values represent the absolute value of the maximum expected measurement in units appropriate for the current value of the KE6485_ATTR_FUNCTION property. 
+
+For example, when you set the KE6485_ATTR_FUNCTION property to KE6485_VAL_DC_VOLTS, the units are volts.  For example, setting this property to 10.0 configures the DMM to measure DC voltages from -10.0 to +10.0 volts.
+
+Negative values are reserved for controlling the DMM's auto-ranging capability.
+
+Valid values:
+
+KE6485_VAL_AUTO_RANGE_ON (-1.0) 
+Configures the DMM to calculate the range before each measurement automatically. When you set this property to KE6485_VAL_AUTO_RANGE_ON, you can obtain the actual range the DMM is currently using by getting the value of the KE6485_ATTR_AUTO_RANGE_VALUE property.
+
+KE6485_VAL_AUTO_RANGE_OFF (-2.0)
+Disables auto-ranging. The DMM sets the range to the value it most recently calculated. When you set this property to KE6485_VAL_AUTO_RANGE_OFF , further queries of this property return the actual range.
+    
+Valid positive values depend on the value of the KE6485_ATTR_FUNCTION property.
+
+KE6485_VAL_DC_VOLTS:   0 to 210 volts (6514 only)
+KE6485_VAL_DC_CURRENT: 0 to 210e-6 amperes (6514 only)
+KE6485_VAL_DC_CURRENT: 0 to 21e-3  amperes (6485/6487 only)
+KE6485_VAL_2_WIRE_RES: 0 to 210G ohm (6514 only)
+KE6485_VAL_DC_CHARGE:  0 to 21 e-6 Coulombs (6514 only)
+"
+attribute: "Auto Range Upper Limit"
+	"Basic Instrument Operation:Auto Range Upper Limit"
+	fD readwrite local 00118C8D
+"Specifies the auto range upper limit"
+attribute: "Auto Range Lower limit"
+	"Basic Instrument Operation:Auto Range Lower limit"
+	fD readwrite local 00118C8E
+"Specifies the auto range lower limit"
+attribute: "Absolute Resolution"
+	"Basic Instrument Operation:Absolute Resolution"
+	fD readwrite local <no Id>
+"Specifies the measurement resolution in absolute units.
+
+Setting this parameter to lower values increases the measurement precision, but decreases measurement speed. 
+
+Setting this parameter to higher values decreases the measurement precision, but increases the measurement speed.      
+
+The valid range depends on the current measurement function and the current measurement range that you select with the KE6485_ATTR_FUNCTION and the KE6485_ATTR_RANGE properties.
+
+Valid values:
+
+10000 to 1e-9
+"
+attribute: "Trigger interval"
+	"Trigger:Trigger interval"
+	fD readwrite local 00118CA6
+"Read or write trigger interval. This property is only used when KE6485_ATTR_TRIGGER_SOURCE is KE6485_VAL_TIMER.
+
+Valid values:
+0.001 to 99999.999 sec."
+attribute: "Trigger Delay"
+	"Trigger:Trigger Delay"
+	fD readwrite local 001312D5
+"Specifies length of time the DMM waits after it receives the trigger and before it takes a measurement.  Use positive values to set the trigger delay in seconds.  Negative values are reserved for configuring the DMM to calculate the trigger delay automatically.
+    Setting this property to KE6485_VAL_AUTO_DELAY_ON configures the DMM to calculate the trigger delay before each measurement.  Setting this property to KE6485_VAL_AUTO_DELAY_OFF stops the DMM from calculating the trigger delay and sets the trigger delay to the last automatically calculated value.
+    
+    Valid Range:  
+        0.0 - 999.9999 seconds
+        KE6485_VAL_AUTO_DELAY_ON
+        KE6485_VAL_AUTO_DELAY_OFF
+    "
+attribute: "Trigger Source"
+	"Trigger:Trigger Source"
+	iL enum { KE6485_VAL_IMMEDIATE=1, KE6485_VAL_SOFTWARE_TRIG=3, KE6485_VAL_TIMER=1011, KE6485_VAL_MANUAL=1007, KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006, KE6485_VAL_EXTERNAL=2} readwrite local 001312D4
+"Specifies the trigger source.  After you call one of the KE6485_Measure, KE6485_Read, or KE6485_Initiate functions, the DMM waits for the trigger you specify with this property.  After it receives the trigger, the DMM waits the length of time you specify with the KE6485_ATTR_TRIGGER_DELAY property.  The DMM then takes a measurement.
+    
+KE6485_VAL_IMMEDIATE 1
+Immediate trigger
+
+KE6485_VAL_SOFTWARE_TRIG 3
+Software trigger
+
+KE6485_VAL_TIMER 1011
+Timer trigger
+
+KE6485_VAL_MANUAL 1007
+Manual trigger
+
+KE6485_VAL_TLINK1 1001
+Trigger Link line 1
+
+KE6485_VAL_TLINK2 1002
+Trigger Link line 2
+
+KE6485_VAL_TLINK3 1003
+Trigger Link line 3
+
+KE6485_VAL_TLINK4 1004
+Trigger Link line 4
+
+KE6485_VAL_TLINK5 1005
+Trigger Link line 5
+
+KE6485_VAL_TLINK6 1006
+Trigger Link line 6
+
+KE6485_VAL_EXTERNAL 2
+External trigger"
+attribute: "Trigger Slope"
+	"Trigger:Trigger Slope"
+	iL enum { KE6485_VAL_POSITIVE=0, KE6485_VAL_NEGATIVE=1, KE6485_VAL_POSITIVE_OR_NEGATIVE=1001} readwrite local 0013141E
+"Specifies the polarity of the external trigger signal.
+    
+KE6485_VAL_POSITIVE 0
+Positive slope
+
+KE6485_VAL_NEGATIVE 1
+Negative slope
+
+KE6485_VAL_POSITIVE_OR_NEGATIVE 1001"
+attribute: "Trigger Clear"
+	"Trigger:Trigger Clear"
+	iL writeonly local 00118CC9
+"Setting to any value clears pending trigger immediately.
+
+Applies only to model 6485 and 6485.
+"
+attribute: "Ready For Software Trigger"
+	"Trigger:Ready For Software Trigger"
+	iL readonly local 00118CD5
+"This read-only property is used to determine if the instrument is ready to receive a software trigger, while performing measurements with the trigger source set to Software Trigger. 
+
+For the KE6485 driver, this is equivalent to testing the Operation Event Register for the Waiting for Arm Event bit.
+
+This property returns three values:
+KE6485_VAL_READY (0)
+KE6485_VAL_NOT_READY (1)
+
+"
+attribute: "Trigger Count"
+	"MultiPoint Acquisition:Trigger Count"
+	iL readwrite local 00131400
+"Specifies the number of triggers the DMM accepts before it returns to the idle state.
+    
+    Valid Range:  
+
+  "
+attribute: "Sample Trigger"
+	"MultiPoint Acquisition:Sample Trigger"
+	iL enum { KE6485_VAL_IMMEDIATE=1, KE6485_VAL_INTERVAL=10, KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006} readwrite local 001313FE
+"Specifies the sample trigger source. This property affects instrument operation only when the KE6485_ATTR_SAMPLE_COUNT property is greater than 1.
+When the DMM takes a measurement and the KE6485_ATTR_SAMPLE_COUNT property is greater than 1, the DMM does not take the next measurement until the event you specify with this property occurs.
+    When you set this property to KE6485_VAL_IMMEDIATE, the DMM does not wait for a trigger of any kind between measurements.  When you set this property to KE6485_VAL_EXTERNAL, the DMM waits for a trigger on the external trigger input before it takes the next measurement.  When you set this property to KE6485_VAL_SOFTWARE_TRIG, the DMM waits until you call the KE6485_SendSoftwareTrigger function before it takes the next measurement.  When you set this property to KE6485_VAL_INTERVAL, the DMM waits the length of time you specify with the KE6485_ATTR_SAMPLE_INTERVAL property before it takes the next measurement.
+    
+KE6485_VAL_IMMEDIATE 1
+The DMM does not wait for a trigger of any kind between measurements.
+
+KE6485_VAL_INTERVAL 10
+
+KE6485_VAL_TLINK1 1001
+Trigger Link line 1
+
+KE6485_VAL_TLINK2 1002
+Trigger Link line 2
+
+KE6485_VAL_TLINK3 1003
+Trigger Link line 3
+
+KE6485_VAL_TLINK4 1004
+Trigger Link line 4
+
+KE6485_VAL_TLINK5 1005
+Trigger Link line 5
+
+KE6485_VAL_TLINK6 1006
+Trigger Link line 6"
+attribute: "Sample Count"
+	"MultiPoint Acquisition:Sample Count"
+	iL readwrite local 001313FD
+"Specifies the number of measurements the DMM takes each time it receives a trigger.
+    
+    Valid Range:  
+
+  "
+attribute: "Meas Complete Destination"
+	"MultiPoint Acquisition:Meas Complete Destination"
+	iL enum { KE6485_VAL_NONE=-1, KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006} readwrite local 00131401
+"After each measurement, the DMM generates a measurement-complete signal.  This properties specifies the destination of the measurement-complete signal.  This signal is commonly referred to as Voltmeter Complete.
+    
+KE6485_VAL_NONE -1
+Disables Measurement Complete signal
+
+KE6485_VAL_TLINK1 1001
+Selects Trigger Link line 1 for the Measurement Complete signal
+
+KE6485_VAL_TLINK2 1002
+Selects Trigger Link line 2 for the Measurement Complete signal
+
+KE6485_VAL_TLINK3 1003
+Selects Trigger Link line 3 for the Measurement Complete signal
+
+KE6485_VAL_TLINK4 1004
+Selects Trigger Link line 4 for the Measurement Complete signal
+
+KE6485_VAL_TLINK5 1005
+Selects Trigger Link line 5 for the Measurement Complete signal
+
+KE6485_VAL_TLINK6 1006
+Selects Trigger Link line 6 for the Measurement Complete signal"
+attribute: "Sample Interval"
+	"MultiPoint Acquisition:Sample Interval"
+	fD readwrite local 001313FF
+"Specifies the interval between samples in seconds. This property affects instrument operation only when the  KE6485_ATTR_SAMPLE_TRIGGER property is set to KE6485_VAL_INTERVAL.  
+    
+Note: This property applies only to Pulsed DC source mode on  model 6487, where it specifies the period of the pulses. Unlike in IviDmm, this property is used even if KE6485_ATTR_SAMPLE_COUNT property is equal to 1.     
+
+    Valid Range:  0.02 - 1999.98 seconds
+
+Note: The resulting number of mesurements per half-period must be less than or equal to 1000."
+attribute: "Arm Source"
+	"Arm Layer:Arm Source"
+	iL readwrite local 00118C81
+"Specifies the arm source.
+
+Valid values:
+    KE6485_VAL_IMMEDIATE
+    KE6485_VAL_TIMER
+    KE6485_VAL_BUS
+    KE6485_VAL_TLINK 
+    KE6485_VAL_MANUAL
+    KE6485_VAL_PSTEST (6514 only)
+    KE6485_VAL_NSTEST (6514 only)"
+attribute: "Arm Count"
+	"Arm Layer:Arm Count"
+	iL readwrite local 00118C82
+"Read or write arm count.
+
+    Valid Range:  
+         KE6485_VAL_INFINITE         1 - 2500 (Models 6485 and 6514)
+         1 - 3000 (Model 6487)
+    
+    Note: The product of the trig count and arm count cannot exceed the above limits.
+"
+attribute: "Arm Timer"
+	"Arm Layer:Arm Timer"
+	fD readwrite local 00118C83
+"Read or write arm timer interval.
+
+Valid values:
+    0.001 to 99999.999 sec."
+attribute: "Arm TLink Bypass"
+	"Arm Layer:Arm TLink Bypass"
+	iL enum { KE6485_VAL_BYPASS_ONCE=1, KE6485_VAL_BYPASS_NEVER=2} readwrite local 00118C84
+"Specifies whether the arm layer TLink trigger is bypassed once or never
+KE6485_VAL_BYPASS_ONCE 1
+Bypass trigger once
+
+KE6485_VAL_BYPASS_NEVER 2
+Bypass trigger never"
+attribute: "Input Arm Trigger Link"
+	"Arm Layer:Input Arm Trigger Link"
+	iL enum { KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006} readwrite local 00118C85
+"Specifies the input arm Trigger Link line
+KE6485_VAL_TLINK1 1001
+Trigger Link 1
+
+KE6485_VAL_TLINK2 1002
+Trigger Link 2
+
+KE6485_VAL_TLINK3 1003
+Trigger Link 3
+
+KE6485_VAL_TLINK4 1004
+Trigger Link 4
+
+KE6485_VAL_TLINK5 1005
+Trigger Link 5
+
+KE6485_VAL_TLINK6 1006
+Trigger Link 6"
+attribute: "Output Arm Trigger Link"
+	"Arm Layer:Output Arm Trigger Link"
+	iL enum { KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006} readwrite local 00118C86
+"Specifies the output arm Trigger Link line
+KE6485_VAL_TLINK1 1001
+Trigger Link 1
+
+KE6485_VAL_TLINK2 1002
+Trigger Link 2
+
+KE6485_VAL_TLINK3 1003
+Trigger Link 3
+
+KE6485_VAL_TLINK4 1004
+Trigger Link 4
+
+KE6485_VAL_TLINK5 1005
+Trigger Link 5
+
+KE6485_VAL_TLINK6 1006
+Trigger Link 6"
+attribute: "Arm Output"
+	"Arm Layer:Arm Output"
+	iL enum { KE6485_VAL_OUTPUT_ENABLED=1, KE6485_VAL_OUTPUT_DISABLED=0} readwrite local 00118C87
+"Enable disable arm output .
+
+
+KE6485_VAL_OUTPUT_ENABLED 1
+Output enabled
+
+KE6485_VAL_OUTPUT_DISABLED 0
+Output disabled"
+attribute: "Trigger Source (Low Level)"
+	"Trigger Layer:Trigger Source (Low Level)"
+	iL enum { KE6485_VAL_TRIG_IMMEDIATE=1, KE6485_VAL_TRIG_TLINK=2} readwrite local 00118CA3
+"Specifies the source of the trig layer trigger
+KE6485_VAL_TRIG_IMMEDIATE 1
+Immediate trigger
+
+KE6485_VAL_TRIG_TLINK 2
+Trigger Link"
+attribute: "Trigger Count"
+	"Trigger Layer:Trigger Count"
+	iL readwrite local 00118CA5
+"Specifies the number of triggers before exiting the trig layer"
+attribute: "Trigger Delay (Low Lever)"
+	"Trigger Layer:Trigger Delay (Low Lever)"
+	fD readwrite local 00118CA4
+"Specifies the delay between the trig layer trigger and the measurement"
+attribute: "Trigger TLink Bypass"
+	"Trigger Layer:Trigger TLink Bypass"
+	iL enum { KE6485_VAL_BYPASS_ONCE=1, KE6485_VAL_BYPASS_NEVER=2} readwrite local 00118C8A
+"Specifies whether the trig layer TLink trigger is bypassed once or never
+KE6485_VAL_BYPASS_ONCE 1
+Bypass trigger once
+
+KE6485_VAL_BYPASS_NEVER 2
+Bypass trigger never"
+attribute: "Input Trigger Link"
+	"Trigger Layer:Input Trigger Link"
+	iL enum { KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006} readwrite local 00118C88
+"Specifies the input Trigger Link line
+KE6485_VAL_TLINK1 1001
+Trigger Link line 1
+
+KE6485_VAL_TLINK2 1002
+Trigger Link line 2
+
+KE6485_VAL_TLINK3 1003
+Trigger Link line 3
+
+KE6485_VAL_TLINK4 1004
+Trigger Link line 4
+
+KE6485_VAL_TLINK5 1005
+Trigger Link line 5
+
+KE6485_VAL_TLINK6 1006
+Trigger Link line 6"
+attribute: "Output Trigger Link"
+	"Trigger Layer:Output Trigger Link"
+	iL enum { KE6485_VAL_TLINK1=1001, KE6485_VAL_TLINK2=1002, KE6485_VAL_TLINK3=1003, KE6485_VAL_TLINK4=1004, KE6485_VAL_TLINK5=1005, KE6485_VAL_TLINK6=1006} readwrite local 00118C89
+"Specifies the output Trigger Link line
+KE6485_VAL_TLINK1 1001
+Trigger Link line 1
+
+KE6485_VAL_TLINK2 1002
+Trigger Link line 2
+
+KE6485_VAL_TLINK3 1003
+Trigger Link line 3
+
+KE6485_VAL_TLINK4 1004
+Trigger Link line 4
+
+KE6485_VAL_TLINK5 1005
+Trigger Link line 5
+
+KE6485_VAL_TLINK6 1006
+Trigger Link line 6"
+attribute: "Trigger Output"
+	"Trigger Layer:Trigger Output"
+	iL enum { KE6485_VAL_OUTPUT_ENABLED=1, KE6485_VAL_OUTPUT_DISABLED=0} readwrite local 00118C8B
+"Specifies the trigger output
+KE6485_VAL_OUTPUT_ENABLED 1
+Disabled trigger output
+
+KE6485_VAL_OUTPUT_DISABLED 0
+Enabled trigger output"
+attribute: "Auto Trigger Delay Enabled"
+	"Trigger Layer:Auto Trigger Delay Enabled"
+	bool readwrite local 00118C8C
+"Enable or disable the auto trigger delay
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Source Delay"
+	"Trigger Layer:Source Delay"
+	fD readwrite local 00118D2A
+"Delay, in seconds, between the source trigger and the source change. Applies only to model 6487 in ramp mode."
+attribute: "DC Volts Driven Guard"
+	"Measurement Operation Options:DC Volts Driven Guard"
+	bool readwrite local 00118C7B
+"Enable or disable driven guards.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "DC Volts External Feedback Enabled"
+	"Measurement Operation Options:DC Volts External Feedback Enabled"
+	bool readwrite local 00118C7C
+"Enable or disable external feedback.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "DC Current Damp Enabled"
+	"Measurement Operation Options:DC Current Damp Enabled"
+	bool readwrite local 00118C7D
+"Enable or disable current damping.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "2-Wire Resistance Guard Enabled"
+	"Measurement Operation Options:2-Wire Resistance Guard Enabled"
+	bool readwrite local 00118C7E
+"Specifies Resistance Guard On or Off
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Auto Discharge Enabled"
+	"Measurement Operation Options:Auto Discharge Enabled"
+	bool readwrite local 00118C7F
+"Specifies auto discharge on or off
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Auto Discharge Level"
+	"Measurement Operation Options:Auto Discharge Level"
+	fD readwrite local 00118C80
+"Specifies the auto discharge level."
+attribute: "Filter Enabled"
+	"Measurement Operation Options:Filtering:Filter Enabled"
+	bool readwrite local 00118C41
+"Enable or disable filter.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Filter Type"
+	"Measurement Operation Options:Filtering:Filter Type"
+	iL enum { KE6485_VAL_FILTER_MOVING=1, KE6485_VAL_FILTER_REPEATING=2, KE6485_VAL_FILTER_REPEATING_CUMULATIVE=3} readwrite local 00118C42
+"Specifies the filter type.
+KE6485_VAL_FILTER_MOVING 1
+Moving average filter
+
+KE6485_VAL_FILTER_REPEATING 2
+Repeating average filter
+
+KE6485_VAL_FILTER_REPEATING_CUMULATIVE 3
+Repeating average filter, cumulative across tasks"
+attribute: "Filter Count"
+	"Measurement Operation Options:Filtering:Filter Count"
+	iL readwrite local 00118C43
+"Specifies the filter count.
+
+Valid values:
+    1 to 9999 for model 6487 in pulsed DC mode
+    2 to  100 otherwise
+         
+ "
+attribute: "Filter Count Actual"
+	"Measurement Operation Options:Filtering:Filter Count Actual"
+	iL readonly local 00118D11
+"Returns the actual number of measurements used by the filter to calculate each reading. This would only be different than the Filter Count when using the KE6485_VAL_FILTER_REPEATING_CUMMULATIVE
+filter. 
+
+NOTES:
+    (1) The result is valid only after completing a measurement task. 
+    (2) The result is 1 if the filter is disabled.
+"
+attribute: "Median Filter Enabled"
+	"Measurement Operation Options:Filtering:Median Filter Enabled"
+	bool readwrite local 00118C97
+"Turn on or off the median filter
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Median Filter Rank"
+	"Measurement Operation Options:Filtering:Median Filter Rank"
+	iL readwrite local 00118C98
+"Specifies 'n' for rank; 
+
+Valid values:
+    1 to 5  (rank=2n+1)."
+attribute: "Relative Enabled"
+	"Measurement Operation Options:Relative:Relative Enabled"
+	bool readwrite local 00118C44
+"Enable or disable relative
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Relative Reference"
+	"Measurement Operation Options:Relative:Relative Reference"
+	fD readwrite local 00118C49
+"Specify the relative reference.
+
+Valid values: 
+    -9.99999e20 to 9.99999e20"
+attribute: "Math Enabled"
+	"Measurement Operation Options:Math (mX+b and percnet):Math Enabled"
+	bool readwrite local 00118C4B
+"Enable or disable the math function.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Math Function"
+	"Measurement Operation Options:Math (mX+b and percnet):Math Function"
+	iL readwrite local 00118C4A
+"Specifies the math function to use for the math calculation."
+attribute: "Math Slope (m)"
+	"Measurement Operation Options:Math (mX+b and percnet):Math Slope (m)"
+	fD readwrite local 00118C4C
+"Specifies the m scale factor in the mX+b math function.
+
+Valid range: -9.99999e20 to 9.99999e20"
+attribute: "Math Offset (b)"
+	"Measurement Operation Options:Math (mX+b and percnet):Math Offset (b)"
+	fD readwrite local 00118C4D
+"Specifies the b offset in the mX+b math function.
+
+Valid Range: -9.99999e20 to + 9.99999e20"
+attribute: "Math Units"
+	"Measurement Operation Options:Math (mX+b and percnet):Math Units"
+	string readwrite local 00118D08
+"Specify units for mX+b and m/X+b
+
+Valid values for model 6514:
+    Exactly 3 upper case letters.
+
+Valid values for models 6485 and 6487:
+    Exactly 1 character ('A' through 'Z', '[' = omega, '' = degrees, ']' = percent).
+
+"
+attribute: "Math Percent Reference"
+	"Measurement Operation Options:Math (mX+b and percnet):Math Percent Reference"
+	fD readwrite local 00118C4E
+"Specifies the reference value for percent calculations(6514 only).
+
+Valid Range: -9.99999e20 to +9.99999e20"
+attribute: "Enable or Disable Composite Limit Auto Clear "
+	"Measurement Operation Options:Composite Limit:Enable or Disable Composite Limit Auto Clear "
+	bool readwrite local 00118C9A
+"Enable or disable the composite limit auto clear.
+
+Note: Applicable only to models 6487 and 6514.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Composite Limit Clear"
+	"Measurement Operation Options:Composite Limit:Composite Limit Clear"
+	iL writeonly local 00118C8F
+"Clear I/O port.
+
+Note: Applicable only to models 6487 and 6514."
+attribute: "Limit 1 Upper Output Fail Pattern"
+	"Measurement Operation Options:Limit Test Output Patterns:Limit 1 Upper Output Fail Pattern"
+	iL readwrite local 00118C91
+"Specifies 4-bit output 'fail' output pattern for upper limit 1.
+
+Note: Applicable only to models 6487 and 6514."
+attribute: "Limit 1 Lower Output Fail Pattern"
+	"Measurement Operation Options:Limit Test Output Patterns:Limit 1 Lower Output Fail Pattern"
+	iL readwrite local 00118C93
+"Specifies 4-bit output 'fail' output pattern for lower limit 1.
+
+Note: Applicable only to models 6487 and 6514."
+attribute: "Limit 2 Upper Output Fail Pattern"
+	"Measurement Operation Options:Limit Test Output Patterns:Limit 2 Upper Output Fail Pattern"
+	iL readwrite local 00118C92
+"Specifies 4-bit output 'fail' output pattern for upper limit 2.
+
+Note: Applicable only to models 6487 and 6514."
+attribute: "Limit 2 Lower Output Fail Pattern"
+	"Measurement Operation Options:Limit Test Output Patterns:Limit 2 Lower Output Fail Pattern"
+	iL readwrite local 00118C94
+"Specifies 4-bit output 'fail' output pattern for lower limit 2.
+
+Note: Applicable only to models 6487 and 6514."
+attribute: "Composite Limit Output Pass Pattern"
+	"Measurement Operation Options:Limit Test Output Patterns:Composite Limit Output Pass Pattern"
+	iL readwrite local 00118C90
+"Specifies 4-bit digital 'pass' output pattern.
+
+Note: Applicable only to models 6487 and 6514."
+attribute: "Limit 1 Test Enabled"
+	"Measurement Operation Options:Limit Test:Limit 1 Test Enabled"
+	bool readwrite local 00118C51
+"Specifies whether to enable limit 1 testing. Limit testing can be applied to all measurement functions 
+
+Notes:
+
+(1) The limit test operation is performed after mX+b and percent math operations. Call the KE6485_FetchLimitTestData function to get limit test results.
+(2) Once limit test is enabled, you must call KE6485_FetchLimitTestData to clear any old results that may be in the limit test register.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Limit 2 Test Enabled"
+	"Measurement Operation Options:Limit Test:Limit 2 Test Enabled"
+	bool readwrite local 00118C54
+"Specifies whether to enable 2 testing. Limit testing can applied to all measurement functions 
+
+Notes:
+(1) The limit test operation is performed after mX+b and percent math operation. Call the KE6485_FetchLimitTestData function to get limit test results.
+(2) Once limit test is enabled, you must call KE6485_FetchLimitTestData to clear any old results that may be in the limit test result register.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Limit 1 Upper Threshold"
+	"Measurement Operation Options:Limit Test:Limit 1 Upper Threshold"
+	fD readwrite local 00118C52
+"Specifies the upper range of the limit 1 test. The value is in units appropriate for the current value of the KE6485_ATTR_FUNCTION property.
+
+Valid Range: -9.99999e20 to +9.99999e20 
+Default Value: +1
+Notes:
+This value must always be great than or equal to the KE6485_LIMIT1_LOWER_VALUE"
+attribute: "Limit 1 Lower Threshold"
+	"Measurement Operation Options:Limit Test:Limit 1 Lower Threshold"
+	fD readwrite local 00118C53
+"Specifies the lower range of the limit 1 test. The value is in the units appropriate for the current value of the KE6485_ATTR_FUNCTION property.
+
+Valid Range: -9.99999e20 to +9.99999e20
+Default Value: -1
+Notes:
+This value must always be lesser than or equal to the KE6485_LIMIT1_UPPER_VALUE"
+attribute: "Limit 1 Test Fail"
+	"Measurement Operation Options:Limit Test:Limit 1 Test Fail"
+	bool readonly local 00118C5D
+"Returns a read-only value indicating if limit 1 test passed or failed. To determine which limit failed, read the measurement event register using the KE6485_ATTR_MEASUREMENT_EVENT_REGISTER property.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Limit 2 Upper Threshold"
+	"Measurement Operation Options:Limit Test:Limit 2 Upper Threshold"
+	fD readwrite local 00118C55
+"Specifies the upper range of the limit 2 test. The value is in units appropriate for the current value of the KE6485_ATTR_FUNCTION property.
+
+Valid Range: -9.99999e20 to +9.99999e20
+Default Value: +1
+
+Notes:
+This value must always be great than or equal to the KE6485_ATTR_LIMIT2_LOWER_VALUE property.
+"
+attribute: "Limit 2 lower threshold"
+	"Measurement Operation Options:Limit Test:Limit 2 lower threshold"
+	fD readwrite local 00118C56
+"Specifies the lower range of the limit test. The value is in units appropriate for the current value of the KE6485_ATTR_FUNCTION property.
+
+Valid Range: -9.99999e20 to +9.99999e20
+Default Value: -1
+
+Note:
+This value must always be lesser than or equal to the KE6485_ATTR_LIMIT2_UPPER_VALUE."
+attribute: "Limit 2 Test Fail"
+	"Measurement Operation Options:Limit Test:Limit 2 Test Fail"
+	bool readonly local 00118C5E
+"Returns a read-only value indicating if the limit 2 test passed or failed. To determine which limit failed, read the measurement event register using the KE6485_ATTR_MEASUREMENT_EVENT_REGISTER property
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Digital Output level"
+	"Measurement Operation Options:Digital Output:Digital Output level"
+	iL readwrite local 00118C57
+"Specify 4 bit digital 'pass' output pattern.
+
+Valid values: 1 to 15"
+attribute: "Digital Output Auto Delay"
+	"Measurement Operation Options:Digital Output:Digital Output Auto Delay"
+	fD readwrite local 00118C58
+"Specify delay ( pulse with) for pass/fail pattern"
+attribute: "Digital Output Clear"
+	"Measurement Operation Options:Digital Output:Digital Output Clear"
+	iL readwrite local 00118C59
+"Clear I/O port"
+attribute: "Digital Output Auto Enabled"
+	"Measurement Operation Options:Digital Output:Digital Output Auto Enabled"
+	bool readwrite local 00118C5A
+"Enable/Disable digital outputs
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Line 4 Mode Configure"
+	"Measurement Operation Options:Digital Output:Line 4 Mode Configure"
+	iL enum { KE6485_VAL_TTL4_MODE_EOT=1, KE6485_VAL_TTL4_MODE_BUSY=2} readwrite local 00118C5B
+"Set Line 4 mode as EOTest or BUSY
+
+Valid values:
+    KE6485_VAL_TTL4_MODE_EOT
+    KE6485_VAL_TTL4_MODE_BUSY
+KE6485_VAL_TTL4_MODE_EOT 1
+Signal at End of test
+
+KE6485_VAL_TTL4_MODE_BUSY 2
+Signal when busy"
+attribute: "TTL 4 Busy Level"
+	"Measurement Operation Options:Digital Output:TTL 4 Busy Level"
+	bool readwrite local 00118C5C
+"Set/Read line 4 as high (TRUE) or low (FALSE).
+
+Default Value: FALSE
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Buffer Size"
+	"Measurement Operation Options:Buffer:Buffer Size"
+	iL readwrite local 00118C37
+"Specifies the size of the buffer in readings.
+
+Note: The IviDmm-compatible functions and properties update this property to be the product of Trigger Count and Sample Count. To independently set this property, call the IviDmm-compatible functions first or use the KE6485-specific functions instead.
+
+Valid range: 
+
+Model 6485
+    2 to 2500
+
+Model 6487
+    2 to 3000
+
+Model 6514
+    2 to 2500
+"
+attribute: "Buffer Size Free"
+	"Measurement Operation Options:Buffer:Buffer Size Free"
+	iL readonly local 00118C67
+"Returns the number of free bytes in the buffer"
+attribute: "Readings stored in buffer"
+	"Measurement Operation Options:Buffer:Readings stored in buffer"
+	iL readonly local 00118D14
+"Query number of readings stored in buffer"
+attribute: "Buffer Elements"
+	"Measurement Operation Options:Buffer:Buffer Elements"
+	iL readwrite local 00118C3D
+"Specifies which data elements the instrument returns for a reading in the buffer.
+
+Default value: KE6485_ELEMENT_READING - Reading only
+
+Notes:
+
+(1) The property value is encoded as a bitmask. An enabled element has a 1 in corresponding place in the property value."
+attribute: "Timestamp Format"
+	"Measurement Operation Options:Buffer:Timestamp Format"
+	iL enum { KE6485_VAL_TIMESTAMP_ABS=1, KE6485_VAL_TIMESTAMP_DELTA=2} readwrite local 00118C68
+"Selects the timestamp format for buffer readings.
+
+Default value: KE6485_VAL_TIMESTAMP_ABS
+KE6485_VAL_TIMESTAMP_ABS 1
+Store relative timestamps referenced to zero seconds for the first reading.
+
+KE6485_VAL_TIMESTAMP_DELTA 2
+Store relative timestamps as the time difference from the last timestamp."
+attribute: "Timestamp Reset"
+	"Measurement Operation Options:Buffer:Timestamp Reset"
+	iL writeonly local 00118CCA
+"Setting any value resets the timestamp to 0 seconds."
+attribute: "Buffer Data Source"
+	"Measurement Operation Options:Buffer:Buffer Data Source"
+	iL enum { KE6485_VAL_DATA_SENSE=1, KE6485_VAL_DATA_CALC1=2, KE6485_VAL_DATA_CALC2=3} readwrite local 00118C38
+"Selects the source of readings the instrument stores in the buffer.
+
+Default Value: KE6485_DATA_CALC1
+KE6485_VAL_DATA_SENSE 1
+Stores readings in buffer and not any enabled math calculations on the readings.
+
+KE6485_VAL_DATA_CALC1 2
+Stores results in buffer of any enabled math calculations on readings.
+
+KE6485_VAL_DATA_CALC2 3
+Disables storage of readings in buffer."
+attribute: "Buffer Data Control"
+	"Measurement Operation Options:Buffer:Buffer Data Control"
+	iL enum { KE6485_VAL_CONTROL_NEVER=0, KE6485_VAL_CONTROL_NEXT=1} readwrite local 00118C39
+"Specifies how the instrument  saves readings in the buffer.
+
+Default value: KE6485_VAL_CONTROL_NEVER
+KE6485_VAL_CONTROL_NEVER 0
+Disables buffer operation.
+
+KE6485_VAL_CONTROL_NEXT 1
+Enable buffer operation for a fixed number of readings before disabling buffer operation."
+attribute: "Buffer Data Format"
+	"Measurement Operation Options:Buffer:Buffer Data Format"
+	iL enum { KE6485_VAL_FORMAT_ASCII=1, KE6485_VAL_FORMAT_SINGLE=2, KE6485_VAL_FORMAT_SINGLE32=3} readwrite local 00118C3A
+"Specifies the data format in which the instrument returns measurement data over the bus.
+
+Default Value: KE6485_VAL_FORMAT_ASCII
+KE6485_VAL_FORMAT_ASCII 1
+ASCII format.
+
+KE6485_VAL_FORMAT_SINGLE 2
+Binary IEEE-754 single precision format.
+
+KE6485_VAL_FORMAT_SINGLE32 3
+Binary IEEE-754 single precision format."
+attribute: "Buffer Byte Order"
+	"Measurement Operation Options:Buffer:Buffer Byte Order"
+	iL enum { KE6485_VAL_BYTE_ORDER_NORMAL=1, KE6485_VAL_BYTE_ORDER_SWAPPED=2} readwrite local 00118C3B
+"Selects the byte ordering for returning data stored in the buffer.
+
+Valid values:
+KE6485_VAL_BYTE_ORDER_NORMAL.
+KE6485_VAL_BYTE_ORDER_SWAPPED.
+
+Notes:
+Use the swapped byte order when transferring data to x86 PCs.
+KE6485_VAL_BYTE_ORDER_NORMAL 1
+Normal byte order for IEEE-754 binary data (big-endian).
+
+KE6485_VAL_BYTE_ORDER_SWAPPED 2
+Reverse byte order for IEEE-754 binary data (little-endian).
+Use swapped byte order on x86 PCs for  binary data."
+attribute: "Buffer Clear"
+	"Measurement Operation Options:Buffer:Buffer Clear"
+	iL writeonly local 00118CF3
+"Writing any value clears the buffer. The buffer must be inactive to use this command."
+attribute: "Buffer Statistics Function"
+	"Measurement Operation Options:Buffer:Buffer Statistics Function"
+	iL enum { KE6485_VAL_STATS_MEAN=0, KE6485_VAL_STATS_SDEV=3, KE6485_VAL_STATS_MIN=1, KE6485_VAL_STATS_MAX=2, KE6485_VAL_STATS_PK2PK=4} readwrite local 00118C4F
+"Specifies the statistical calculations to perform on readings stored in the buffer.
+
+Default Value: KE6485_VAL_STATS_MEAN
+KE6485_VAL_STATS_MEAN 0
+Calculates the mean (average)of all readings stored in the buffer.
+
+KE6485_VAL_STATS_SDEV 3
+Calculates the standard deviation of all readings stored in the buffer.
+
+KE6485_VAL_STATS_MIN 1
+Determines the minimum reading in the buffer.
+
+KE6485_VAL_STATS_MAX 2
+Determines the maximum reading in the buffer.
+
+KE6485_VAL_STATS_PK2PK 4
+Calculate the peak-to-peak value (maximum-minimum) of all readings stored in the buffer."
+attribute: "Auto Zero"
+	"Measurement Operation Options:Auto Zero Extension Group:Auto Zero"
+	iL enum { KE6485_VAL_AUTO_ZERO_OFF=0, KE6485_VAL_AUTO_ZERO_ON=1} readwrite local 0013141C
+"Specifies the auto-zero mode.  In general, the auto-zero capability of a DMM normalizes all measurements based on a Zero Reading.  When auto-zeroing is enabled, the DMM internally disconnects the input signal and takes a Zero Reading.  The DMM then subtracts the Zero Reading from the measurement.  This prevents offset voltages present in the DMM's input circuitry from affecting measurement accuracy.
+    
+KE6485_VAL_AUTO_ZERO_OFF 0
+Disables the DMM from taking any more Zero Readings.  The DMM subtract the last Zero Reading from all subsequent values it measures.
+
+KE6485_VAL_AUTO_ZERO_ON 1
+Configures the DMM to take a Zero Reading for each measurement.  The DMM subtracts the Zero Reading from the value it measures."
+attribute: "Zero Check Enabled"
+	"System Settings:Zero Check Enabled"
+	bool readwrite local 00118C5F
+"Enable/Disable Zero Check
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Zero Correct Enabled"
+	"System Settings:Zero Correct Enabled"
+	bool readwrite local 00118C60
+"Enable/Disable zero correction
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Zero Correct Acquire"
+	"System Settings:Zero Correct Acquire"
+	fD writeonly local 00118C61
+"Acquire a new Zero Correct Value"
+attribute: "SCPI Version"
+	"System Settings:SCPI Version"
+	string readonly local 00118C65
+"Returns the version of the SCPI standard that the instrument uses."
+attribute: "Simulated Key Press"
+	"System Settings:Simulated Key Press"
+	iL readwrite local 00118C66
+"Allows simulating front panel key presses.
+
+Notes:
+(1) To send key presses to the instrument, set this property. For example, to select volts measurement function, set this property to KE6485_VAL_KEY_DCV (2).
+(2) Reading this property returns:
+        Model 6514: The last key pressed on the instrument since last entering remote operation, or -1 otherwise;
+        Models 6485/6487: The last simulated key press, or -1 otherwise.
+"
+attribute: "Display Enabled"
+	"System Settings:Display Enabled"
+	bool readwrite local 00118C3F
+"Enable or disable the display.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Message Mode Enabled"
+	"System Settings:Message Mode Enabled"
+	bool readwrite local 00118C73
+"Specifies whether to enable the front panel message-display mode.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Display Message"
+	"System Settings:Display Message"
+	string readwrite local 00118C74
+"Specifies the message to display on the instrument front panel if KE6485_MESSAGE_ENABLED is enabled.
+
+Notes:
+The ASCII message may be up to 12 characters."
+attribute: "Front Panel Lockout"
+	"System Settings:Front Panel Lockout"
+	bool readwrite local 00118C9D
+"Specifies whether to lockout the instrument's front panel keys.
+
+Default Value: FALSE
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Save Setup"
+	"Configuration information:Save Setup"
+	iL enum { KE6485_VAL_SETUP_0=0, KE6485_VAL_SETUP_1=1, KE6485_VAL_SETUP_2=2} writeonly local 00118C63
+"Save current instrument configuration in one of four user setup memories
+KE6485_VAL_SETUP_0 0
+User setup 0
+
+KE6485_VAL_SETUP_1 1
+User setup 1
+
+KE6485_VAL_SETUP_2 2
+User setup 2"
+attribute: "Recall Setup"
+	"Configuration information:Recall Setup"
+	iL enum { KE6485_VAL_SETUP_0=0, KE6485_VAL_SETUP_1=1, KE6485_VAL_SETUP_2=2} writeonly local 00118C64
+"Recall the previously saved user setup
+KE6485_VAL_SETUP_0 0
+User setup 0
+
+KE6485_VAL_SETUP_1 1
+User setup 1
+
+KE6485_VAL_SETUP_2 2
+User setup 2"
+attribute: "Setup Recall Preset"
+	"Configuration information:Setup Recall Preset"
+	iL writeonly local 00118CD2
+"Setting any value restores the factory preset setup."
+attribute: "Power-on Setup Configuration"
+	"Configuration information:Power-on Setup Configuration"
+	iL enum { KE6485_VAL_SETUP_RESET=-1, KE6485_VAL_SETUP_PRESET=-2, KE6485_VAL_SETUP_0=0, KE6485_VAL_SETUP_1=1, KE6485_VAL_SETUP_2=2} readwrite local 00118C62
+"Specify default setup configuration on power-up
+KE6485_VAL_SETUP_RESET -1
+
+KE6485_VAL_SETUP_PRESET -2
+Return instrument to factory-default configuration setup
+
+KE6485_VAL_SETUP_0 0
+Return instrument to user-saved configuration setup 0
+
+KE6485_VAL_SETUP_1 1
+Return instrument to user-defined configuration setup 1.
+
+KE6485_VAL_SETUP_2 2
+Return instrument to user-defined configuration setup 2"
+attribute: "Instrument Options"
+	"Configuration information:Instrument Options"
+	string readonly local 00118CCB
+"Returns the model number of any installed options. Returns '0' if no options are installed."
+attribute: "Powerline Frequency"
+	"Configuration information:PowerLine Freq Extension Group:Powerline Frequency"
+	fD enum { 50.0=5.000000E+1, 60.0=6.000000E+1} readwrite local 0013141D
+"Specifies the power-line frequency in hertz.
+    
+Valid values:
+
+50 or 60 Hz
+50.0 50
+
+60.0 60"
+attribute: "Powerline Freq Auto Enabled"
+	"Configuration information:PowerLine Freq Extension Group:Powerline Freq Auto Enabled"
+	bool readwrite local 00118CCF
+"Automatically determines the powerline frequency.
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Aperture Time"
+	"Configuration information:Device Info Extension Group:Aperture Time"
+	fD readwrite local 00131411
+"Returns the measurement aperture time for the current configuration.  The unit for this property is power-line cycles (PLCs) ."
+attribute: "Aperture Time Units"
+	"Configuration information:Device Info Extension Group:Aperture Time Units"
+	iL enum { KE6485_VAL_POWER_LINE_CYCLES=1} readwrite local 00131412
+"Returns the units for the property .
+
+Valid values:
+
+    KE6485_VAL_POWER_LINE_CYCLES 
+
+Note:
+    Models 6514 and 6485 only support the power-line cycles unit.
+
+  
+KE6485_VAL_POWER_LINE_CYCLES 1
+Power line cycles"
+attribute: "Service Request Enable Register"
+	"Status/Event Registers:Service Request Enable Register"
+	iL readwrite local 00118C71
+"Sets or reads the Service Request Enable Register."
+attribute: "Status Byte Register"
+	"Status/Event Registers:Status Byte Register"
+	iL readonly local 00118C72
+"Returns the current value of the instrument's Service Request byte.
+
+Notes:
+Frequent reading of the status register byte while measuring may interfere with instrument operation especially on the RS-232 bus.
+"
+attribute: "Standard Event Register"
+	"Status/Event Registers:Standard Event Register"
+	iL readonly local 00118C6F
+"Returns the instrument's Standard Event Register."
+attribute: "Standard Event Enable Register"
+	"Status/Event Registers:Standard Event Enable Register"
+	iL readwrite local 00118C70
+"Sets or reads the Standard Event Enable Register. "
+attribute: "Clear Event Registers"
+	"Status/Event Registers:Clear Event Registers"
+	bool writeonly local 00118C9B
+"Setting this property to TRUE resets all bits to zero in the following event registers:
+
+  Standard Event Register
+  Operation Event Register
+  Measurement Event Register
+  Questionable Event Register
+
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Reset Enable Registers"
+	"Status/Event Registers:Reset Enable Registers"
+	bool writeonly local 00118C9C
+"Setting this property to TRUE resets all bits to zero of the following enable registers:
+
+  Operation Event Enable Register
+  Measurement Event Enable Register
+  Questionable Event Enable Register
+
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Measurement Event Enable Register"
+	"Status/Event Registers:Measurement Event Enable Register"
+	iL readwrite local 00118C32
+"Set or reads the Measurement Event Enable Register.
+
+"
+attribute: "Measurement Event Register"
+	"Status/Event Registers:Measurement Event Register"
+	iL readonly local 00118C69
+"Returns the instrument's Measurement Event Status Register.
+
+"
+attribute: "Measurement Condition Register"
+	"Status/Event Registers:Measurement Condition Register"
+	iL readonly local 00118C6A
+"Returns the instrument's Measurement Condition Register."
+attribute: "Operation Event Enable Register"
+	"Status/Event Registers:Operation Event Enable Register"
+	iL readwrite local 00118C33
+"Sets or reads the Operation Event Enable Register.
+
+"
+attribute: "Operation Event Register"
+	"Status/Event Registers:Operation Event Register"
+	iL readonly local 00118C6B
+"Returns the instrument's Operation Event Register."
+attribute: "Operation Condition Register"
+	"Status/Event Registers:Operation Condition Register"
+	iL readonly local 00118C6C
+"Returns the instrument's Operation Condition Register."
+attribute: "Questionable Event Enable Register."
+	"Status/Event Registers:Questionable Event Enable Register."
+	iL readwrite local 00118C34
+"Sets or reads the Questionable Event Enable register.
+
+"
+attribute: "Questionable Event Register"
+	"Status/Event Registers:Questionable Event Register"
+	iL readonly local 00118C6D
+"Returns the instrument's Questionable Event Register."
+attribute: "Questionable Condition Register"
+	"Status/Event Registers:Questionable Condition Register"
+	iL readonly local 00118C6E
+"Returns the instrument's Questionable Condition Register."
+attribute: "Clear Error Queue "
+	"Status/Event Registers:Clear Error Queue "
+	bool writeonly local 00118C75
+"Setting this property to TRUE clears all messages from the error queue
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Error Queue Next"
+	"Status/Event Registers:Error Queue Next"
+	string readonly local 00118C76
+"Read and clear the oldest error/status code and message"
+attribute: "Read all errors"
+	"Status/Event Registers:Read all errors"
+	string readonly local 00118C77
+"Read and clear all errors/status(code and message)"
+attribute: "Read Next Error Code"
+	"Status/Event Registers:Read Next Error Code"
+	iL readonly local 00118C7A
+"Read and clear oldest error/status(code only)."
+attribute: "Read All Error Codes"
+	"Status/Event Registers:Read All Error Codes"
+	string readonly local 00118C78
+"Read and clear all errors/status (code only)."
+attribute: "Read Error Queue Count"
+	"Status/Event Registers:Read Error Queue Count"
+	iL readonly local 00118C79
+"Read the number of messages in queue."
+attribute: "Source Interlock Failed"
+	"Status/Event Registers:Source Interlock Failed"
+	bool readonly local 00118CE9
+"VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "KE6485_ATTR_CALIBRATION_LOCKED"
+	"Calibration:KE6485_ATTR_CALIBRATION_LOCKED"
+	bool readwrite local 00118CBF
+"VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Calibration Code"
+	"Calibration:Calibration Code"
+	string readwrite local 00118CC1
+"Eight character code/password used to enable or unlock
+calibration. (Default: 'KI00' followed by the model number. For example: 'KI006514'.)"
+attribute: "Calibration Point Initiate"
+	"Calibration:Calibration Point Initiate"
+	fD writeonly local 00118CC4
+"Initiate calibration of the active function and range at the specified calibration point."
+attribute: "Calibration Constants"
+	"Calibration:Calibration Constants"
+	string readonly local 00118CC5
+"Returns the calibration constants for the active measurement function and range. The constants are formatted as comma-separated values in exponential notation."
+attribute: "Save Calibration"
+	"Calibration:Save Calibration"
+	iL writeonly local 00118CC2
+"Setting to any value to save all calibration data to non-volatile memory."
+attribute: "Calibration Date"
+	"Calibration:Calibration Date"
+	string readwrite local 00118CC0
+"Year, Month, Day set for the last calibration."
+attribute: "Calibration Date Due"
+	"Calibration:Calibration Date Due"
+	string readwrite local 00118CC8
+"User settable due date for the next calibration."
+attribute: "Calibration Count"
+	"Calibration:Calibration Count"
+	iL readonly local 00118CC3
+"Returns how many times the instrument has been calibrated."
+attribute: "Calibration Voltage Offset Correct"
+	"Calibration:Calibration Voltage Offset Correct"
+	iL writeonly local 00118CC6
+"Corrects the voltage offset. Setting any value initiates the correction."
+attribute: "Calibration Current Offset Correct"
+	"Calibration:Calibration Current Offset Correct"
+	iL writeonly local 00118CC7
+"Corrects the current offset. Setting any value initiates the correction."
+attribute: "KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_NEGATIVE"
+	"Calibration:KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_NEGATIVE"
+	iL writeonly local 00118CD8
+attribute: "KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_NEGATIVE_VALUE"
+	"Calibration:KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_NEGATIVE_VALUE"
+	fD writeonly local 00118CD9
+attribute: "KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_ZERO"
+	"Calibration:KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_ZERO"
+	iL writeonly local 00118CDA
+attribute: "KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_ZERO_VALUE"
+	"Calibration:KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_ZERO_VALUE"
+	fD readwrite local 00118CDB
+attribute: "KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_POSITIVE"
+	"Calibration:KE6485_ATTR_CALIBRATION_SOURCE_VOLTS_POSITIVE"
+	iL writeonly local 00118CDC
+attribute: "CALIBRATION_SOURCE_VOLTS_POSITIVE_VALUE"
+	"Calibration:CALIBRATION_SOURCE_VOLTS_POSITIVE_VALUE"
+	fD writeonly local 00118CD7
+attribute: "CALIBRATION_SOURCE_CONSTANTS"
+	"Calibration:CALIBRATION_SOURCE_CONSTANTS"
+	string readonly local 00118CD6
+attribute: "ID Query Response"
+	"Miscellaneous Attributes:ID Query Response"
+	string readonly local 00118C31
+"Returns the ID Query response string.  The instrument driver gets the value of this property when you pass TRUE for the ID Query parameter to the KE6485_init or KE6485_InitWithOptions function.
+    "
+attribute: "Enabled Errors"
+	"Miscellaneous Attributes:Enabled Errors"
+	string readwrite local 00118CD0
+"List of errors code that may be queued. This property is a string in the format: '(-440:-100,+500:+900,+953:+957)'.
+"
+attribute: "Disabled Errors"
+	"Miscellaneous Attributes:Disabled Errors"
+	string readwrite local 00118CD1
+"List of errors codes that will not be queued. This property is a string in the format: '(+0:+414,+950:+952,+958)'.
+"
+attribute: "Last Reading"
+	"Miscellaneous Attributes:Last Reading"
+	fD readonly local 00118CCC
+"Returns the last measuremnt reading."
+attribute: "Last Math Result"
+	"Miscellaneous Attributes:Last Math Result"
+	fD readonly local 00118CCD
+"Returns that last calculated result."
+attribute: "Last Relative Result"
+	"Miscellaneous Attributes:Last Relative Result"
+	fD readonly local 00118CCE
+"Returns the last null-relative calculation result."
+attribute: "Advanced Filter Enabled"
+	"Miscellaneous Attributes:Obsolete Attributes:Advanced Filter Enabled"
+	bool readwrite local 00118C96
+"Turn on or off the advanced filter.
+
+Default value: Off
+
+This feature is not currently supported by any model. This property is keep for compatibility. Reading the value may not be accurate. 
+VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Noise Tolerance"
+	"Miscellaneous Attributes:Obsolete Attributes:Noise Tolerance"
+	fD readwrite local 00118C95
+"Specifies the noise tolerance.
+
+Valid  values: 
+    0 to 105
+
+This feature is not currently supported by any model. This property is keep for compatibility. Also see the Advanced Filter Enabled property."
+attribute: "Digit Resolution"
+	"Miscellaneous Attributes:Obsolete Attributes:Digit Resolution"
+	fD enum { KE6485_VAL_4_DIGITS=3.500000E+0, KE6485_VAL_5_DIGITS=4.500000E+0, KE6485_VAL_6_DIGITS=5.500000E+0, KE6485_VAL_7_DIGITS=6.500000E+0} readwrite local 00118C99
+"Specifies the measurement resolution in digits of precision.
+Setting this property to higher values increases the measurement accuracy.  Setting this property to lower values increases the measurement speed.
+KE6485_VAL_4_DIGITS 3.5
+3-1/2 digits
+
+KE6485_VAL_5_DIGITS 4.5
+4-1/2 digits
+
+KE6485_VAL_6_DIGITS 5.5
+5-1/2 digits
+
+KE6485_VAL_7_DIGITS 6.5
+6-1/2 digits"
+attribute: "DC Voltage Range"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Voltage Range"
+	fD enum { 2.1=2.100000E+0, 21=2.100000E+1, 210=2.100000E+2} readwrite local 00118D1A
+"2.1 2.1
+
+21 21
+
+210 210"
+attribute: "DC Voltage Autorange Enable"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Voltage Autorange Enable"
+	bool readwrite local 00118D25
+"VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "DC Current Range "
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Current Range "
+	fD readwrite local 00118D1B
+attribute: "DC Current Autorange Enable"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Current Autorange Enable"
+	bool readwrite local 00118D26
+"VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Resistance Range for 6514"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Resistance Range for 6514"
+	fD enum { 2.1E3=2.100000E+3, 21e3=2.100000E+4, 210e3=2.100000E+5, 2.1e6=2.100000E+6, 21e6=2.100000E+7, 210e6=2.100000E+8, 2.1e9=2.100000E+9, 21e9=2.100000E+10, 210e9=2.100000E+11} readwrite local 00118D1C
+"2.1E3 2100
+
+21e3 21000
+
+210e3 210000
+
+2.1e6 2.1e+006
+
+21e6 2.1e+007
+
+210e6 2.1e+008
+
+2.1e9 2.1e+009
+
+21e9 2.1e+010
+
+210e9 2.1e+011"
+attribute: "2-Wire Resistance Autorange Enable"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):2-Wire Resistance Autorange Enable"
+	bool readwrite local 00118D27
+"VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "Charge Range"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Charge Range"
+	fD enum { 21e-9=2.100000E-8, 210e-9=2.100000E-7, 2.1e-6=2.100000E-6, 21E-6=2.100000E-5} readwrite local 00118D16
+"21e-9 2.1e-008
+
+210e-9 2.1e-007
+
+2.1e-6 2.1e-006
+
+21E-6 2.1e-005"
+attribute: "Autorange Enable"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Autorange Enable"
+	bool readwrite local 00118D19
+"VI_TRUE 1
+True
+
+VI_FALSE 0
+False"
+attribute: "DC Volts Aperture Time"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Volts Aperture Time"
+	fD readwrite local 00118D1D
+attribute: "DC Current Aperture Time"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Current Aperture Time"
+	fD readwrite local 00118D17
+attribute: "2-Wire Resistance Aperture Time"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):2-Wire Resistance Aperture Time"
+	fD readwrite local 00118D1E
+attribute: "Charge Aperture Time"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Charge Aperture Time"
+	fD readwrite local 00118D12
+attribute: "Number of Powerline Cycles"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Number of Powerline Cycles"
+	fD readwrite local 00118D28
+"Aperture time in NPLC for all measurement functions."
+attribute: "DC Voltage Auto Range Upper Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Voltage Auto Range Upper Limit"
+	fD enum { 2.1=2.100000E+0, 21=2.100000E+1, 210=2.100000E+2} readwrite local 00118D1F
+"2.1 2.1
+
+21 21
+
+210 210"
+attribute: "DC Current Auto Range Upper Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Current Auto Range Upper Limit"
+	fD readwrite local 00118D20
+attribute: "2-wire resistance Auto Range Upper Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):2-wire resistance Auto Range Upper Limit"
+	fD enum { 2.1E3=2.100000E+3, 21e3=2.100000E+4, 210e3=2.100000E+5, 2.1e6=2.100000E+6, 21e6=2.100000E+7, 210e6=2.100000E+8, 2.1e9=2.100000E+9, 21e9=2.100000E+10, 210e9=2.100000E+11} readwrite local 00118D21
+"2.1E3 2100
+
+21e3 21000
+
+210e3 210000
+
+2.1e6 2.1e+006
+
+21e6 2.1e+007
+
+210e6 2.1e+008
+
+2.1e9 2.1e+009
+
+21e9 2.1e+010
+
+210e9 2.1e+011"
+attribute: "Charge Auto Range Upper Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Charge Auto Range Upper Limit"
+	fD enum { KE6485_VAL_HIGH=1.000000E+0, KE6485_VAL_LOW=0.000000E+0} readonly local 00118D18
+"KE6485_VAL_HIGH 1
+Limits auto-ranging to the higher ranges
+
+KE6485_VAL_LOW 0
+Limits auto-ranging to the lower ranges"
+attribute: "DC Voltage Auto Range Lower Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Voltage Auto Range Lower Limit"
+	fD enum { 2.1=2.100000E+0, 21=2.100000E+1, 210=2.100000E+2} readwrite local 00118D22
+"2.1 2.1
+
+21 21
+
+210 210"
+attribute: "DC Current Auto Range Lower Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):DC Current Auto Range Lower Limit"
+	fD readwrite local 00118D23
+attribute: "2-wire resistance Auto Range Lower Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):2-wire resistance Auto Range Lower Limit"
+	fD enum { 2.1E3=2.100000E+3, 21e3=2.100000E+4, 210e3=2.100000E+5, 2.1e6=2.100000E+6, 21e6=2.100000E+7, 210e6=2.100000E+8, 2.1e9=2.100000E+9, 21e9=2.100000E+10, 210e9=2.100000E+11} readwrite local 00118D24
+"2.1E3 2100
+
+21e3 21000
+
+210e3 210000
+
+2.1e6 2.1e+006
+
+21e6 2.1e+007
+
+210e6 2.1e+008
+
+2.1e9 2.1e+009
+
+21e9 2.1e+010
+
+210e9 2.1e+011"
+attribute: "Charge Auto Range Lower Limit"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Charge Auto Range Lower Limit"
+	fD enum { KE6485_VAL_HIGH=1.000000E+0, KE6485_VAL_LOW=0.000000E+0} readonly local 00118D13
+"KE6485_VAL_HIGH 1
+Limits auto-ranging to the higher ranges
+
+KE6485_VAL_LOW 0
+Limits auto-ranging to the lower ranges"
+attribute: "Charge Autorange Limit Group"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Charge Autorange Limit Group"
+	iL enum { KE6485_VAL_HIGH=1, KE6485_VAL_LOW=0} readwrite local 00118D15
+"KE6485_VAL_HIGH 1
+Limits auto-ranging to the higher ranges
+
+KE6485_VAL_LOW 0
+Limits auto-ranging to the lower ranges"
+attribute: "Relative Data  Source"
+	"Miscellaneous Attributes:Hidden Attributes (not user-viewable):Relative Data  Source"
+	iL enum { KE6485_VAL_DATA_SENSE=1, KE6485_VAL_DATA_CALC1=2} readwrite local 00118D29
+"KE6485_VAL_DATA_SENSE 1
+
+KE6485_VAL_DATA_CALC1 2"
