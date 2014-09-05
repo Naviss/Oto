@@ -28,6 +28,10 @@
 				<Item Name="Ke2510 Send Data  to Instrument.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Send Data  to Instrument.vi"/>
 				<Item Name="Ke2510 Set Current Protection Level.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Set Current Protection Level.vi"/>
 				<Item Name="Ke2510 VXIPnp Error Converter.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 VXIPnp Error Converter.vi"/>
+				<Item Name="KE6485 Close.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Close.vi"/>
+				<Item Name="KE6485 Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Initialize.vi"/>
+				<Item Name="KE6485 IVI Error Converter.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 IVI Error Converter.vi"/>
+				<Item Name="KE6485 Self-Test.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Self-Test.vi"/>
 			</Item>
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
@@ -50,6 +54,7 @@
 				<Item Name="Get Text Rect.vi" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/Get Text Rect.vi"/>
 				<Item Name="GetHelpDir.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/GetHelpDir.vi"/>
 				<Item Name="GetRTHostConnectedProp.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/GetRTHostConnectedProp.vi"/>
+				<Item Name="IVI Error Message Builder.vi" Type="VI" URL="/&lt;vilib&gt;/errclust.llb/IVI Error Message Builder.vi"/>
 				<Item Name="Longest Line Length in Pixels.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Longest Line Length in Pixels.vi"/>
 				<Item Name="LVBoundsTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVBoundsTypeDef.ctl"/>
 				<Item Name="LVRectTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVRectTypeDef.ctl"/>
@@ -66,6 +71,9 @@
 				<Item Name="whitespace.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/whitespace.ctl"/>
 			</Item>
 			<Item Name="ke2510.dll" Type="Document" URL="ke2510.dll">
+				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
+			</Item>
+			<Item Name="KE6485_32.DLL" Type="Document" URL="KE6485_32.DLL">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
 		</Item>
