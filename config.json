@@ -1,31 +1,59 @@
-{
-  "ConfigTemps":[
-    {
-      "D":0.1,
-      "I":0.3,
-      "Ilim":1.9,
-      "Name":"Small Tec",
+{  
+  "ConfigTemps":[  
+    {  
+      "Name":"SmallTec",
+      "Thi":65,
+      "Tlow":8,
+      "Tstartup":25,
       "P":8,
-      "Thi":65,
-      "Tlow":4,
+      "I":0.20000000000000001,
+      "D":0.10000000000000001,
+      "Ilim":1.8,
       "Vlim":2,
-      "Default": true,
-      "Tstartup": 25
+      "Default":true
     },
-    {
-      "D":30,
-      "I":2,
-      "Ilim":4,
+    {  
       "Name":"Big Tec",
-      "P":200,
       "Thi":65,
       "Tlow":4,
-      "Vlim":8.6,
-      "Default": false,
-      "Tstartup": 25
+      "Tstartup":25,
+      "P":200,
+      "I":2,
+      "D":30,
+      "Ilim":4,
+      "Vlim":8.5,
+      "Default":false
+    },
+    {  
+      "Name":"New 0",
+      "Thi":0,
+      "Tlow":1,
+      "Tstartup":0,
+      "P":0,
+      "I":1,
+      "D":0,
+      "Ilim":0,
+      "Vlim":0,
+      "Default":false
     }
   ],
-  "DeviceStrings": {
-    "KE2510": "GPIB0::15::INSTR" 
+  "ConfigCounts":[
+    {
+      "Channel1":{
+        "AutoLavel": false,
+        "Range": 0,
+        "Impedance": 0,
+        "Thresold": 0.4
+      },
+      "Channel1":{
+        "AutoLavel": false,
+        "Range": 0,
+        "Impedance": 0,
+        "Thresold": 0.4
+      }
+    }
+  ],
+  "DeviceStrings":{  
+    "KE2510":"GPIB0::15::INSTR"
   }
 }
