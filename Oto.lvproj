@@ -22,23 +22,12 @@
 		<Item Name="Oto.lvlib" Type="Library" URL="../Oto.lvlib"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="instr.lib" Type="Folder">
-				<Item Name="Close.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Close.vi"/>
-				<Item Name="Configure Channel (Auto Threshold Voltage).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Channel (Auto Threshold Voltage).vi"/>
-				<Item Name="Configure Channel (Basic).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Channel (Basic).vi"/>
-				<Item Name="Configure Channel (Slop).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Channel (Slop).vi"/>
-				<Item Name="Configure Channel (Threshold Voltage).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Channel (Threshold Voltage).vi"/>
-				<Item Name="Configure Channel (Voltage Range).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Channel (Voltage Range).vi"/>
-				<Item Name="Configure Channel.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Channel.vi"/>
-				<Item Name="Configure Measurement (Time Interval).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Measurement/Configure Measurement (Time Interval).vi"/>
-				<Item Name="Configure Measurement (Totalize Timed).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Measurement/Configure Measurement (Totalize Timed).vi"/>
-				<Item Name="Configure Measurement.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Measurement/Configure Measurement.vi"/>
-				<Item Name="Configure Sample Count.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Configure Sample Count.vi"/>
-				<Item Name="Configure Statistics.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Configure/Calculate/Configure Statistics.vi"/>
-				<Item Name="Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Initialize.vi"/>
+				<Item Name="Agilent 532XX Series.lvlib" Type="Library" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Agilent 532XX Series.lvlib"/>
 				<Item Name="Ke2510 Close.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Close.vi"/>
 				<Item Name="Ke2510 Configure Source Function.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Configure Source Function.vi"/>
 				<Item Name="Ke2510 Configure Temp Source Mode.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Configure Temp Source Mode.vi"/>
 				<Item Name="Ke2510 Enable Source Output.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Enable Source Output.vi"/>
+				<Item Name="Ke2510 Get New Reading.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Get New Reading.vi"/>
 				<Item Name="Ke2510 Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Initialize.vi"/>
 				<Item Name="Ke2510 Send Data  to Instrument.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Send Data  to Instrument.vi"/>
 				<Item Name="Ke2510 Set Current Protection Level.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 Set Current Protection Level.vi"/>
@@ -49,10 +38,6 @@
 				<Item Name="KE6485 Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Initialize.vi"/>
 				<Item Name="KE6485 IVI Error Converter.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 IVI Error Converter.vi"/>
 				<Item Name="KE6485 Self-Test.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Self-Test.vi"/>
-				<Item Name="Read Measurement (Multiple).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Data/Read Measurement (Multiple).vi"/>
-				<Item Name="Read Measurement (Single).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Data/Read Measurement (Single).vi"/>
-				<Item Name="Read Measurement (Statistics).vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Data/Read Measurement (Statistics).vi"/>
-				<Item Name="Read Measurement.vi" Type="VI" URL="/&lt;instrlib&gt;/Agilent 532XX Series/Public/Data/Read Measurement.vi"/>
 			</Item>
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
@@ -105,7 +90,6 @@
 			<Item Name="KE6485_32.DLL" Type="Document" URL="KE6485_32.DLL">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
-			<Item Name="KE6485_32.DLL" Type="Document" URL="../../../../../VXIPNP/WinNT/bin/KE6485_32.DLL"/>
 			<Item Name="lvanlys.dll" Type="Document" URL="/&lt;resource&gt;/lvanlys.dll"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
