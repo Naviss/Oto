@@ -34,6 +34,7 @@
 				<Item Name="Ke2510 VXIPnp Error Converter.vi" Type="VI" URL="/&lt;instrlib&gt;/Ke2510/Ke2510.LLB/Ke2510 VXIPnp Error Converter.vi"/>
 				<Item Name="KE6485 Close.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Close.vi"/>
 				<Item Name="KE6485 Configure Source DC.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Configure Source DC.vi"/>
+				<Item Name="KE6485 Control Source.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Control Source.vi"/>
 				<Item Name="KE6485 Enable Source.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Enable Source.vi"/>
 				<Item Name="KE6485 Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 Initialize.vi"/>
 				<Item Name="KE6485 IVI Error Converter.vi" Type="VI" URL="/&lt;instrlib&gt;/KE6485/KE6485.LLB/KE6485 IVI Error Converter.vi"/>
@@ -87,9 +88,8 @@
 			<Item Name="ke2510.dll" Type="Document" URL="ke2510.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
-			<Item Name="KE6485_32.DLL" Type="Document" URL="KE6485_32.DLL">
-				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
-			</Item>
+			<Item Name="KE6485_32.dll" Type="Document" URL="../../../../../VXIPNP/WinNT/bin/KE6485_32.dll"/>
+			<Item Name="KE6485_32.dll" Type="Document" URL="/VXIpnp/WINNT/Bin/KE6485_32.dll"/>
 			<Item Name="lvanlys.dll" Type="Document" URL="/&lt;resource&gt;/lvanlys.dll"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
