@@ -21,6 +21,14 @@
 		<Property Name="typedefPath1" Type="PathRel">../SubVI/Configs/Temp/TempConfig.ctl</Property>
 		<Property Name="typeDesc" Type="Bin">&amp;!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!%#`A!!!"1!A!!!!!!,!!Z!-0````]%4G&amp;N:1!!#5!+!!.5;'E!#U!+!!25&lt;'^X!!!01!I!#&amp;2T&gt;'&amp;S&gt;(6Q!!!(1!I!!6!!"U!+!!&amp;*!!&gt;!#A!"2!!,1!I!"%FM;7U!!!N!#A!%6GRJ&lt;1!!$%!B"U2F:G&amp;V&lt;(1!11$R!!!!!!!!!!%/6'6N=%.P&lt;G:J:SZD&gt;'Q!+E"1!!I!!!!"!!)!!Q!%!!5!"A!(!!A!#1J5:7VQ1W^O:GFH!!!"!!I!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Property>
 	</Item>
+	<Item Name="InfiniiumAccesString" Type="Variable">
+		<Property Name="featurePacks" Type="Str">Network</Property>
+		<Property Name="Network:UseBinding" Type="Str">False</Property>
+		<Property Name="Network:UseBuffering" Type="Str">False</Property>
+		<Property Name="numTypedefs" Type="UInt">0</Property>
+		<Property Name="type" Type="Str">Network</Property>
+		<Property Name="typeDesc" Type="Bin">&amp;!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!!I*!!!!"1!A!!!!!!"!""!-0````]'5X2S;7ZH!!!"!!!!!!!!!!!!!!!!!!!</Property>
+	</Item>
 	<Item Name="K6487AccesString" Type="Variable">
 		<Property Name="featurePacks" Type="Str">Network</Property>
 		<Property Name="Network:UseBinding" Type="Str">False</Property>
